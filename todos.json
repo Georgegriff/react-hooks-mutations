@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "message": "Go to the supermarket",
+      "done": false
+    },
+    {
+      "id": 2,
+      "message": "Mow the lawn",
+      "done": true
+    },
+    {
+      "id": 3,
+      "message": "Clean the kitchen",
+      "done": true
+    },
+    {
+      "id": 4,
+      "message": "Book restaurant reservation",
+      "done": false
+    }
+  ]
+}

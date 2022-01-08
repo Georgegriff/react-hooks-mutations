@@ -1,0 +1,82 @@
+.App {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.TodoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+}
+
+.TodoList li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.TodoList li > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+.Button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  border: solid 1px black;
+  padding: 0.1rem 0.4rem;
+  vertical-align: middle;
+  font: inherit;
+}
+
+.Button:active {
+  opacity: 0.3;
+}
+
+.Input {
+  padding: 0.4rem;
+}
+
+.Checkbox {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.SearchBox {
+  margin-right: 0.5rem;
+}
+
+.Save {
+  color: white;
+  background-color: royalblue;
+}
+
+.Save,
+.Clear {
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+}
+
+.Clear {
+  background-color: white;
+  margin-top: 0.5rem;
+}
+
+.SaveMessage {
+  border: dashed royalblue 2px;
+  padding: 0.5rem;
+}
