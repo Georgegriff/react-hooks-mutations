@@ -2,7 +2,7 @@ import React, {
   createContext,
   useContext,
   useEffect,
-  useMemo,
+  useCallback,
   useState,
 } from "react";
 
@@ -21,7 +21,7 @@ export const TodoProvider = ({ children }) => {
     fetchTodos();
   }, []);
 
-  const existingTodos = useMemo(() => {
+  const existingTodos = useCallback(() => {
     const todoMap = new Map();
     apiResponse?.todos.forEach((todo) => {
       todoMap.set(todo.id, todo);
@@ -32,8 +32,8 @@ export const TodoProvider = ({ children }) => {
 
   useEffect(() => {
     // pass in initial items from server
-    if (!draftTodos && existingTodos.size) {
-      setTodoList(existingTodos);
+    if (!draftTodos && existingTodos().size) {
+      setTodoList(existingTodos());
     }
   }, [existingTodos]);
 
@@ -81,13 +81,13 @@ export const TodoProvider = ({ children }) => {
           // contrived code for the demonstration
           // in the real app this was responsible for deciding if a request should be sent to server or not
           // (optimisation)
-          const existingTodoKeys = Array.from(existingTodos.keys());
+          const existingTodoKeys = Array.from(existingTodos().keys());
           const draftTodoKeys = Array.from(draftTodos.keys());
           let todosHasChanges =
             existingTodoKeys.length !== draftTodoKeys.length;
           // now check entries using ids, unless we know they have changed based on length
           if (!todosHasChanges) {
-            const existingTodoValues = Array.from(existingTodos.values());
+            const existingTodoValues = Array.from(existingTodos().values());
             const draftTodoValues = Array.from(draftTodos.values());
             for (
               let todoIndex = 0;
