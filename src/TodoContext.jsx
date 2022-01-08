@@ -51,8 +51,9 @@ export const TodoProvider = ({ children }) => {
           setTodoList(newTodoItems);
         },
         removeTodo: (id) => {
-          if (draftTodos.delete(id)) {
-            setTodoList(new Map(draftTodos));
+          const newTodos = new Map(draftTodos);
+          if (newTodos.delete(id)) {
+            setTodoList(newTodos);
           }
         },
         addTodo: (message) => {
@@ -72,8 +73,9 @@ export const TodoProvider = ({ children }) => {
             done: false,
           };
           if (draftTodos.has(todo.id)) return;
-          draftTodos.set(todo.id, todo);
-          setTodoList(new Map(draftTodos));
+          const newTodos = new Map(draftTodos);
+          newTodos.set(todo.id, todo);
+          setTodoList(new Map(newTodos));
         },
         saveMessage,
         clearSaveMessage: () => setSaveMessage(""),
