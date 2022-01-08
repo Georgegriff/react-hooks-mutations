@@ -42,8 +42,8 @@ export const TodoProvider = ({ children }) => {
       value={{
         todoItems: draftTodos ? Array.from(draftTodos.values()) : [],
         checkTodo: (id, isDone) => {
-          const newTodoItems = new Map(draftTodos);
           const existingItem = draftTodos.get(id);
+          const newTodoItems = new Map(draftTodos);
           newTodoItems.set(id, {
             ...existingItem,
             done: isDone,
@@ -86,8 +86,9 @@ export const TodoProvider = ({ children }) => {
           let todosHasChanges =
             existingTodoKeys.length !== draftTodoKeys.length;
           // now check entries using ids, unless we know they have changed based on length
-          debugger;
           if (!todosHasChanges) {
+            const existingTodoValues = Array.from(existingTodos.values());
+            const draftTodoValues = Array.from(draftTodos.values());
             for (
               let todoIndex = 0;
               todoIndex < draftTodoKeys.length;
@@ -95,8 +96,8 @@ export const TodoProvider = ({ children }) => {
             ) {
               if (
                 existingTodoKeys[todoIndex] !== draftTodoKeys[todoIndex] ||
-                existingTodoKeys[todoIndex].done !==
-                  draftTodoKeys[todoIndex].done
+                existingTodoValues[todoIndex].done !==
+                  draftTodoValues[todoIndex].done
               ) {
                 todosHasChanges = true;
                 break;
@@ -110,7 +111,7 @@ export const TodoProvider = ({ children }) => {
                 draftTodoKeys.length
               }, todo list: ${Array.from(draftTodos.values())
                 .map(({ message, done }) => `${message} ${done ? "✅" : ""}`)
-                .join(",")}`
+                .join(", ")}`
             );
           } else {
             setSaveMessage("No Todo items were changed.");
